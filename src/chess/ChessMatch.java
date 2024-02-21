@@ -29,14 +29,20 @@ public class ChessMatch {
         return  matriz;
     }
 
-    private void initialSetup(){
-        board.placePiece(new Rook(board, Color.WHITE), new Position(0,0));
-        board.placePiece(new Rook(board, Color.WHITE), new Position(0,7));
-        board.placePiece(new King(board, Color.WHITE), new Position(0,4));
 
-        board.placePiece(new Rook(board, Color.BLACK), new Position(7,7));
-        board.placePiece(new Rook(board, Color.BLACK), new Position(7,0));
-        board.placePiece(new King(board, Color.BLACK), new Position(7,4));
-        board.placePiece(new King(board, Color.BLACK), new Position(7,7));
+    private void placeNewPiece(ChessPiece piece, int row, char column){
+        board.placePiece(piece, new ChessPosition(row, column).toPosition());
+    }
+
+    private void initialSetup(){
+
+        placeNewPiece(new Rook(board, Color.WHITE),1,'h');
+        placeNewPiece(new King(board, Color.WHITE),1,'d');
+        placeNewPiece(new Rook(board, Color.BLACK),1,'a');
+
+        placeNewPiece(new Rook(board, Color.BLACK),8,'h');
+        placeNewPiece(new King(board, Color.BLACK),8,'d');
+        placeNewPiece(new Rook(board, Color.BLACK),8,'a');
+
     }
 }
