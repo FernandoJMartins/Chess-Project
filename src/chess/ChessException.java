@@ -1,6 +1,6 @@
 package chess;
 
-import boardgame.BoardException;
+import chess.boardgame.BoardException;
 
 public class ChessException extends BoardException {
     public ChessException(String message) {
