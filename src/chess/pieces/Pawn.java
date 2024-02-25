@@ -16,11 +16,6 @@ public class Pawn extends ChessPiece {
         return "P";
     }
 
-    private boolean canMove(Position position){
-        ChessPiece p = (ChessPiece)getBoard().piece(position);
-        return p == null;
-    }
-
     @Override
     public boolean[][] possibleMoves() {
         boolean[][] matriz = new boolean[getBoard().getRows()][getBoard().getColumns()];
@@ -29,16 +24,17 @@ public class Pawn extends ChessPiece {
 
 
         if (getColor() == Color.WHITE) {
-            //first play
-            if (getMoveCount() == 0) {
-                ps.setValues(position.getRow() - 2, position.getColumn());
-                if (getBoard().positionExists(ps) && canMove(ps)) {
-                    matriz[ps.getRow()][ps.getColumn()] = true;
-                }
-            }
+
             //above
             ps.setValues(position.getRow() - 1, position.getColumn());
-            if (getBoard().positionExists(ps) && canMove(ps)) {
+            Position p2 = new Position(position.getRow() - 1, position.getColumn());
+            if (getBoard().positionExists(ps) && !getBoard().thereIsAPiece(ps)) {
+                matriz[ps.getRow()][ps.getColumn()] = true;
+            }
+
+            //first play
+            ps.setValues(position.getRow() - 2, position.getColumn());
+            if (getBoard().positionExists(ps) && !getBoard().thereIsAPiece(ps) && getMoveCount() == 0 && !getBoard().thereIsAPiece(p2)) {
                 matriz[ps.getRow()][ps.getColumn()] = true;
             }
 
@@ -53,16 +49,18 @@ public class Pawn extends ChessPiece {
             }
         }
         else{
-            //first play
-            if (getMoveCount() == 0){
-                ps.setValues(position.getRow() + 2, position.getColumn());
-                if (getBoard().positionExists(ps) && canMove(ps)) {
-                    matriz[ps.getRow()][ps.getColumn()] = true;
-                }
-            }
+
+
             //above
             ps.setValues(position.getRow() + 1, position.getColumn());
-            if (getBoard().positionExists(ps) && canMove(ps)) {
+            Position p2 = new Position(position.getRow() + 1, position.getColumn());
+            if (getBoard().positionExists(ps) && !getBoard().thereIsAPiece(ps)) {
+                matriz[ps.getRow()][ps.getColumn()] = true;
+            }
+
+            //first play
+            ps.setValues(position.getRow() + 2, position.getColumn());
+            if (getBoard().positionExists(ps) && !getBoard().thereIsAPiece(ps) && getMoveCount() == 0 && !getBoard().thereIsAPiece(p2)) {
                 matriz[ps.getRow()][ps.getColumn()] = true;
             }
 
