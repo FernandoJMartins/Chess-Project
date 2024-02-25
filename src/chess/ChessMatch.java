@@ -3,6 +3,7 @@ package chess;
 import chess.boardgame.Board;
 import chess.boardgame.Piece;
 import chess.boardgame.Position;
+import chess.pieces.Bishop;
 import chess.pieces.King;
 import chess.pieces.Rook;
 
@@ -198,10 +199,14 @@ public class ChessMatch {
         placeNewPiece(new Rook(board, Color.WHITE),1,'h');
         placeNewPiece(new King(board, Color.WHITE),1,'d');
         placeNewPiece(new Rook(board, Color.WHITE),1,'a');
+        placeNewPiece(new Bishop(board, Color.WHITE),1,'b');
+        placeNewPiece(new Bishop(board, Color.WHITE),1,'g');
 
         placeNewPiece(new Rook(board, Color.BLACK),8,'h');
         placeNewPiece(new King(board, Color.BLACK),8,'d');
         placeNewPiece(new Rook(board, Color.BLACK),8,'a');
+        placeNewPiece(new Bishop(board, Color.BLACK),8,'b');
+        placeNewPiece(new Bishop(board, Color.BLACK),8,'g');
 
     }
 }
