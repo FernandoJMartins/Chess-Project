@@ -5,15 +5,15 @@ import chess.Color;
 import chess.boardgame.Board;
 import chess.boardgame.Position;
 
-public class Bishop extends ChessPiece {
+public class Queen extends ChessPiece {
 
-    public Bishop(Board board, Color color) {
+    public Queen(Board board, Color color) {
         super(board, color);
     }
 
     @Override
     public String toString() {
-        return "B";
+        return "Q";
     }
 
     @Override
@@ -21,6 +21,53 @@ public class Bishop extends ChessPiece {
         boolean[][] matriz = new boolean[getBoard().getRows()][getBoard().getColumns()];
 
         Position ps = new Position(0,0);
+
+        //above
+        ps.setValues(position.getRow() - 1, position.getColumn());
+
+        while (getBoard().positionExists(ps) && !getBoard().thereIsAPiece(ps)) {
+            matriz[ps.getRow()][ps.getColumn()] = true;
+            ps.setRow(ps.getRow() - 1);
+        }
+        if (getBoard().positionExists(ps) && isThereOpponentPiece(ps)){
+            matriz[ps.getRow()][ps.getColumn()] = true;
+        }
+
+
+        //left
+        ps.setValues(position.getRow(), position.getColumn() - 1);
+
+        while (getBoard().positionExists(ps) && !getBoard().thereIsAPiece(ps)) {
+            matriz[ps.getRow()][ps.getColumn()] = true;
+            ps.setColumn(ps.getColumn() - 1);
+        }
+        if (getBoard().positionExists(ps) && isThereOpponentPiece(ps)){
+            matriz[ps.getRow()][ps.getColumn()] = true;
+        }
+
+
+        //right
+        ps.setValues(position.getRow(), position.getColumn() + 1);
+
+        while (getBoard().positionExists(ps) && !getBoard().thereIsAPiece(ps)) {
+            matriz[ps.getRow()][ps.getColumn()] = true;
+            ps.setColumn(ps.getColumn() + 1);
+        }
+        if (getBoard().positionExists(ps) && isThereOpponentPiece(ps)){
+            matriz[ps.getRow()][ps.getColumn()] = true;
+        }
+
+        //below
+        ps.setValues(position.getRow() + 1, position.getColumn());
+
+        while (getBoard().positionExists(ps) && !getBoard().thereIsAPiece(ps)) {
+            matriz[ps.getRow()][ps.getColumn()] = true;
+            ps.setRow(ps.getRow() + 1);
+        }
+        if (getBoard().positionExists(ps) && isThereOpponentPiece(ps)){
+            matriz[ps.getRow()][ps.getColumn()] = true;
+        }
+
 
         //DIAGONAL
         ps.setValues(position.getRow() - 1, position.getColumn() - 1);
